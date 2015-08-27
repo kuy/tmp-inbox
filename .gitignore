@@ -1,0 +1,46 @@
+## Rules below from templates provided by GitHub.
+## <http://github.com/github/gitignore/>
+
+## nodejs
+
+client/node_modules
+client/build
+
+## Ruby
+
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+aws.yml
+log
+tmp
+
+## vim
+
+.*.sw[a-z]
+*.un~
+Session.vim
+
+## OS X
+
+.DS_Store
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# FUSE
+.fuse_hidden*
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/

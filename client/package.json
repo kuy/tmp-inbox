@@ -1,0 +1,27 @@
+{
+  "name": "tmp-inbox-redux",
+  "version": "1.0.0",
+  "description": "A small app to peek emails filed in /tmp/mails directory.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "redux": "^1.0.1",
+    "react-redux": "^1.0.1",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.5",
+    "redux-devtools": "^1.1.1"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Yuki KODAMA",
+  "license": "MIT"
+}

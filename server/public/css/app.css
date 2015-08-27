@@ -1,0 +1,7 @@
+.account-list {
+    display: inline-block;
+}
+
+.account-list .pure-menu-item {
+    height: initial !important;
+}
