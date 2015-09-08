@@ -44,3 +44,7 @@ Session.vim
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
+# Application
+server/mails
+server/public/js/app.js

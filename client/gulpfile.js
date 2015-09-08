@@ -1,22 +1,32 @@
+var browserify = require('browserify');
+var globby = require('globby');
+var through = require('through2');
+var source = require('vinyl-source-stream');
 var gulp = require('gulp');
-var util = require('gulp-util');
 var babel = require('gulp-babel');
-var browserify = require('gulp-browserify');
 var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
 
 gulp.task('transpile', function() {
-  gulp.src('src/*.js')
+  gulp.src('src/**/*.js')
     .pipe(plumber())
-    .pipe(watch('src/*.js'))
+    .pipe(watch('src/**/*.js'))
     .pipe(babel())
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest('build'));
 });
 
 gulp.task('default', ['transpile'], function() {
-  gulp.src('build/*.js')
-    .pipe(plumber())
-    .pipe(watch('build/*.js'))
-    .pipe(browserify({insertGlobals: true}))
-    .pipe(gulp.dest('../server/public/js'))
+  watch('build/**/*.js', function () {
+    var output = through();
+
+    output
+      .pipe(source('app.js'))
+      .pipe(gulp.dest('../server/public/js'));
+
+    globby(['build/**/*.js']).then(function (entries) {
+      browserify({ entries: entries })
+        .bundle()
+        .pipe(output);
+    });
+  });
 });

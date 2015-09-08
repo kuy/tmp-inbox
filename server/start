@@ -36,24 +36,25 @@ get '/' do
   EOF
 end
 
-# get '/api/accounts' do
-#   `ls /tmp/mails`.strip!
-# end
-
 get '/api/accounts' do
-  "yuki.kodama@gmail.com\nkodama@jvr.jp"
+  `ls mails`.strip!
 end
 
+# get '/api/accounts' do
+#   "yuki.kodama@gmail.com\nkodama@jvr.jp"
+# end
+
 get '/api/emails' do
-  f = open "/tmp/mails/#{params['account']}", 'r'
+  f = open "mails/#{params['account']}", 'r'
   raw_inbox = f.read
   f.close
-  inbox = NKF.nkf '--ic=ISO-2022-JP --oc=UTF-8 -Lw -m', raw_inbox
+  # inbox = NKF.nkf '--ic=ISO-2022-JP --oc=UTF-8 -Lw -m', raw_inbox
+  inbox = raw_inbox
 
   body = ''
   emails = []
   inbox.lines do |line|
-    if %r{^Date:\s}.match(line).nil?
+    if %r{^[\w-]:\s}.match(line).nil?
       body += line
       next
     else

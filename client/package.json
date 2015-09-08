@@ -4,18 +4,19 @@
   "description": "A small app to peek emails filed in /tmp/mails directory.",
   "main": "gulpfile.js",
   "dependencies": {
-    "redux": "^1.0.1",
-    "react-redux": "^1.0.1",
+    "redux": "^2.0.0",
+    "react-redux": "^2.1.1",
     "react": "^0.13.3"
   },
   "devDependencies": {
+    "browserify": "^11.0.1",
+    "globby": "^3.0.1",
+    "through2": "^2.0.0",
+    "vinyl-source-stream": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
-    "gulp-browserify": "^0.5.1",
-    "gulp-plumber": "^1.0.1",
-    "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.5",
-    "redux-devtools": "^1.1.1"
+    "redux-devtools": "^2.1.0"
   },
   "scripts": {},
   "repository": {
