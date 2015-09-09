@@ -5,3 +5,7 @@
 .account-list .pure-menu-item {
     height: initial !important;
 }
+
+.account-list .pure-menu-item.selected {
+    background-color: lightgray;
+}

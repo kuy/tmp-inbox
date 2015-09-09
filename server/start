@@ -37,14 +37,13 @@ get '/' do
 end
 
 get '/api/accounts' do
-  `ls mails`.strip!
+  accounts = `ls mails`.strip.split("\n")
+
+  content_type :json
+  { data: { accounts: accounts } }.to_json
 end
 
-# get '/api/accounts' do
-#   "yuki.kodama@gmail.com\nkodama@jvr.jp"
-# end
-
-get '/api/emails' do
+get '/api/accounts/:account/messages' do
   f = open "mails/#{params['account']}", 'r'
   raw_inbox = f.read
   f.close
@@ -52,18 +51,18 @@ get '/api/emails' do
   inbox = raw_inbox
 
   body = ''
-  emails = []
+  messages = []
   inbox.lines do |line|
     if %r{^[\w-]:\s}.match(line).nil?
       body += line
       next
     else
-      emails.unshift body unless body.empty?
+      messages.unshift body unless body.empty?
       body = line
     end
   end
-  emails.unshift body unless body.empty?
+  messages.unshift body unless body.empty?
 
   content_type :json
-  { data: emails }.to_json
+  { data: { messages: messages, account: params['account'] } }.to_json
 end

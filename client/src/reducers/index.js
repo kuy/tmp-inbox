@@ -1,37 +1,65 @@
 import { combineReducers } from 'redux';
+import { RECEIVE_ACCOUNTS, REQUEST_ACCOUNTS, SELECT_ACCOUNT,
+         RECEIVE_MESSAGES, REQUEST_MESSAGES, INVALIDATE_ACCOUNT } from '../actions';
 
-const initialSelectedAccount = null;
-
-function selectedAccount(state = initialSelectedAccount, action) {
+function selectedAccount(state = null, action) {
   switch (action.type) {
-    case 'SELECT_ACCOUNT': 
+    case SELECT_ACCOUNT: 
       return action.account;
   }
-
   return state;
 }
 
 const initialAccounts = {
-  isFetching: false,
-  didInvalidate: false,
-  items: []
+  items: [],
+  isFetching: false
 };
 
 function accounts(state = initialAccounts, action) {
   switch (action.type) {
-    case 'REQUEST_ACCOUNTS':
+    case RECEIVE_ACCOUNTS:
       return Object.assign({}, state, {
-        isFetching: true,
+        items: action.accounts,
+        isFetching: false
+      });
+  }
+  return state;
+}
+
+const initialMessages = {
+  items: [],
+  isFetching: false,
+  didInvalidate: false
+};
+
+function messages(state = initialMessages, action) {
+  switch (action.type) {
+    case RECEIVE_MESSAGES:
+      return Object.assign({}, state, {
+        items: action.messages,
+        isFetching: false,
         didInvalidate: false
       });
   }
+  return state;
+}
 
+function messagesByAccount(state = {}, action) {
+  switch (action.type) {
+    case INVALIDATE_ACCOUNT:
+    case RECEIVE_MESSAGES:
+    case REQUEST_MESSAGES:
+      return Object.assign({}, state, {
+        [action.account]: messages(state[action.account], action)
+      });
+  }
   return state;
 }
 
 const rootReducer = combineReducers({
   accounts,
-  selectedAccount
+  selectedAccount,
+  messagesByAccount
 });
 
 export default rootReducer;
