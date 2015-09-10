@@ -5,16 +5,16 @@ require 'sinatra'
 get '/redux' do
   <<-EOF
 <html>
-<head>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="/css/pure.css" />
-<link rel="stylesheet" href="/css/app.css" />
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="/js/app-redux.js"></script>
-</head>
-<body>
-<div id="tmp-inbox-root"></div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/pure.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="/js/app-redux.js"></script>
+  </head>
+  <body>
+    <div id="tmp-inbox-root"></div>
+  </body>
 </html>
   EOF
 end
@@ -22,42 +22,43 @@ end
 get '/angular' do
   <<-EOF
 <html>
-<head>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="/css/pure.css" />
-<link rel="stylesheet" href="/css/app.css" />
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="/js/app-angular.js"></script>
-</head>
-<body ng-app="inboxApp">
-<inbox-root></inbox-root>
-<div style="display: none">
-  <div id="inbox-root">
-    <div class="pure-g">
-      <account-list></account-list>
-      <message-list></message-list>
-    </div>
-  </div>
-  <div id="inbox-account-list">
-    <div class="account-list pure-menu pure-u-1-5">
-      <span class="pure-menu-heading">Accounts</span>
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item" ng-repeat="account in accountList.accounts">
-          <a href="#account" class="pure-menu-link">{{account}}</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div id="inbox-message-list">
-    <div class="message-list pure-u-4-5">
-      <div ng-repeat="message in messageList.messages">
-        <pre>{{message}}</pre>
-        <hr />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/pure.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="/js/app-angular.js"></script>
+  </head>
+  <body ng-app="inboxApp">
+    <inbox-root></inbox-root>
+
+    <div style="display: none">
+      <div id="inbox-root">
+        <div class="pure-g">
+          <account-list></account-list>
+          <message-list></message-list>
+        </div>
+      </div>
+      <div id="inbox-account-list">
+        <div class="account-list pure-menu pure-u-1-5">
+          <span class="pure-menu-heading">Accounts</span>
+          <ul class="pure-menu-list">
+            <li class="pure-menu-item" ng-repeat="account in accountList.accounts">
+              <a ng-click="accountList.handleSelect(account)" href="#account" class="pure-menu-link">{{account}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="inbox-message-list">
+        <div class="message-list pure-u-4-5">
+          <div ng-repeat="message in messageList.messages">
+            <pre>{{message}}</pre>
+            <hr />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-</body>
+  </body>
 </html>
   EOF
 end
