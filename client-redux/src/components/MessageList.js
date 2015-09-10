@@ -8,7 +8,11 @@ export default class MessageList extends Component {
       <div className="message-list pure-u-4-5">
         {
           messages.map(message =>
-            <pre>{message}</pre>)
+            <div>
+              <pre>{message}</pre>
+              <hr />
+            </div>
+          )
         }
       </div>
     );

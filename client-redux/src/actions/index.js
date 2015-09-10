@@ -17,7 +17,6 @@ function requestAccounts() {
 }
 
 function receiveAccounts(json) {
-  console.log(json);
   return {
     type: RECEIVE_ACCOUNTS,
     accounts: json.data.accounts
@@ -25,7 +24,6 @@ function receiveAccounts(json) {
 }
 
 function fetchAccounts() {
-  console.log('fetchAccounts');
   return dispatch => {
     dispatch(requestAccounts());
     return fetch('http://localhost:4567/api/accounts')
@@ -75,7 +73,6 @@ function requestMessages(account) {
 }
 
 function receiveMessages(account, json) {
-  console.log(json);
   return {
     type: RECEIVE_MESSAGES,
     account: json.data.account,
@@ -84,7 +81,6 @@ function receiveMessages(account, json) {
 }
 
 function fetchMessages(account) {
-  console.log('fetchMessages: ' + account);
   return dispatch => {
     dispatch(requestMessages());
     return fetch('http://localhost:4567/api/accounts/' + account + '/messages')

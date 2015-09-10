@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectAccount, fetchAccountsIfNeeded } from '../actions';
+import { selectAccount, fetchAccountsIfNeeded, fetchMessagesIfNeeded } from '../actions';
 import AccountList from '../components/AccountList';
 import MessageList from '../components/MessageList';
 
@@ -11,9 +11,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    this.props.dispatch(fetchAccountsIfNeeded());
+  }
 
-    dispatch(fetchAccountsIfNeeded());
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedAccount !== this.props.selectedAccount) {
+      const { dispatch, selectedAccount } = nextProps;
+      dispatch(fetchMessagesIfNeeded(selectedAccount));
+    }
   }
 
   handleSelect(account) {

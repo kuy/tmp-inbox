@@ -1,10 +1,11 @@
 ## Rules below from templates provided by GitHub.
 ## <http://github.com/github/gitignore/>
 
-## nodejs
-
-client/node_modules
-client/build
+# Application
+node_modules
+build
+server/mails
+server/public/js/app.js
 
 ## Ruby
 
@@ -44,7 +45,3 @@ Session.vim
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-
-# Application
-server/mails
-server/public/js/app.js
