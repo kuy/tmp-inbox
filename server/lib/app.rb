@@ -35,6 +35,7 @@ get '/angular' do
   <div id="inbox-root">
     <div class="pure-g">
       <account-list></account-list>
+      <message-list></message-list>
     </div>
   </div>
   <div id="inbox-account-list">
@@ -48,8 +49,8 @@ get '/angular' do
     </div>
   </div>
   <div id="inbox-message-list">
-    <div>
-      <div ng-repeat="message in messages">
+    <div class="message-list pure-u-4-5">
+      <div ng-repeat="message in messageList.messages">
         <pre>{{message}}</pre>
         <hr />
       </div>

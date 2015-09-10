@@ -1,15 +1,10 @@
 {
-  "name": "tmp-inbox-redux",
+  "name": "tmp-inbox-angular",
   "version": "1.0.0",
-  "description": "A small Redux app to peek emails filed in /tmp/mails directory.",
+  "description": "A small AngularJS app to peek emails filed in /tmp/mails directory.",
   "main": "gulpfile.js",
   "dependencies": {
-    "redux": "^2.0.0",
-    "react-redux": "^2.1.1",
-    "react": "^0.13.3",
-    "isomorphic-fetch": "^2.1.1",
-    "classnames": "^2.1.3",
-    "redux-thunk": "^0.1.0"
+    "angular": "^1.4.5"
   },
   "devDependencies": {
     "browserify": "^11.0.1",
@@ -19,8 +14,7 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
     "gulp-watch": "^4.3.5",
-    "gulp-plumber": "^1.0.1",
-    "redux-devtools": "^2.1.0"
+    "gulp-plumber": "^1.0.1"
   },
   "scripts": {},
   "repository": {

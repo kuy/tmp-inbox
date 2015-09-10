@@ -20,7 +20,7 @@ gulp.task('default', ['transpile'], function() {
     var output = through();
 
     output
-      .pipe(source('app-redux.js'))
+      .pipe(source('app-angular.js'))
       .pipe(gulp.dest('../server/public/js'));
 
     globby(['build/**/*.js']).then(function (entries) {
