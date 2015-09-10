@@ -5,7 +5,7 @@
 node_modules
 build
 server/mails
-server/public/js/app.js
+server/public/js/app-*.js
 
 ## Ruby
 
