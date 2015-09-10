@@ -50,15 +50,30 @@ get '/api/accounts/:account/messages' do
   # inbox = NKF.nkf '--ic=ISO-2022-JP --oc=UTF-8 -Lw -m', raw_inbox
   inbox = raw_inbox
 
+  current_state = nil
+  patterns = [ [ :header, %r{^[\w-]+:\s} ],
+               [ :header, %r{^\scharset=} ],
+               [ :body, %r{^.*$} ] ]
+
   body = ''
   messages = []
   inbox.lines do |line|
-    if %r{^[\w-]:\s}.match(line).nil?
-      body += line
-      next
-    else
-      messages.unshift body unless body.empty?
-      body = line
+    patterns.each do |list|
+      state = list[0]
+      pattern = list[1]
+      if pattern.match(line)
+        if current_state.nil? || current_state == state || current_state == :header && state == :body
+          body += line
+        end
+
+        if current_state == :body && state == :header
+          messages.unshift body unless body.empty?
+          body = line
+        end
+
+        current_state = state
+        break
+      end
     end
   end
   messages.unshift body unless body.empty?
