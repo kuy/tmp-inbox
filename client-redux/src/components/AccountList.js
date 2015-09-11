@@ -14,11 +14,13 @@ export default class AccountList extends Component {
     const { accounts, selectedAccount } = this.props;
 
     return (
-      <div className="pure-u-1-5">
+      <div className="account-list pure-u-1-5">
         <List subheader="Accounts">
           {
             accounts.map(account =>
-              <ListItem primaryText={account} />
+              <ListItem
+                primaryText={account}
+                onMouseUp={() => onSelect(account)} />
             )
           }
         </List>
